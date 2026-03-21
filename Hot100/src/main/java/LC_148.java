@@ -1,0 +1,48 @@
+public class LC_148 {
+    public ListNode sortList(ListNode head) {
+        // 判断是否到递归边界
+        if (head == null || head.next == null){
+            return head;
+        }
+        // 链表分为两部分
+        ListNode slow = head;
+        // 快指针要初始化在后一个位置，才能保证右半部分>=左半部分  1 2 3 4
+        ListNode fast = head.next;
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // slow 停的位置在中点或者左半部分
+        ListNode left = head;
+        ListNode right = slow.next;
+        // 断开链表
+        slow.next = null;
+        // 递归左右两边，必须接住返回值
+        left = sortList(left);
+        right = sortList(right);
+        // 排序合并
+        return merge(left, right);
+    }
+
+    private ListNode merge(ListNode l1, ListNode l2){
+        // 新建头节点合并
+        ListNode tmp_head = new ListNode(0);
+        ListNode tmp_cur = tmp_head;
+        while ( l1 != null && l2 != null){
+            if (l1.val <= l2.val){
+                tmp_cur.next = l1;
+                l1 = l1.next;
+            }else {
+                tmp_cur.next = l2;
+                l2 = l2.next;
+            }
+            tmp_cur = tmp_cur.next;
+        }
+        if (l1 != null){
+            tmp_cur.next = l1;
+        }else if(l2 != null){
+            tmp_cur.next = l2;
+        }
+        return tmp_head.next;
+    }
+}
