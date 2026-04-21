@@ -1,3 +1,10 @@
+/**
+ * 题目：验证二叉搜索树
+ * 思路：中序遍历。
+ * 二叉搜索树的中序遍历结果是升序的。
+ * 中序遍历二叉树，用变量记录遍历过的最大值，若当前节点值小于等于最大值则不合法。
+ * 时间复杂度：O(n)，空间复杂度：O(h)，h为树的高度（递归栈深度）。
+ */
 public class LC_98 {
     // 记录之前遍历的最大值
     int max;
@@ -11,8 +18,9 @@ public class LC_98 {
         inorder(root);
         return isValid;
     }
+    // 中序遍历
     private void inorder(TreeNode root){
-        // 空 || 已经不合法就退
+        // 剪枝：空 || 已经不合法就退
         if (root == null || !isValid) return;
         inorder(root.left);
         // 不是第一次,且当前值比前面的值小（不是升序）

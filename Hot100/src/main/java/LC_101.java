@@ -1,3 +1,10 @@
+/**
+ * 题目：对称二叉树
+ * 思路：递归。
+ * 比较左子树的左节点与右子树的右节点是否相等，左子树的右节点与右子树的左节点是否相等。
+ * 递归终止条件：节点为空，或值不相等。
+ * 时间复杂度：O(n)，空间复杂度：O(h)，h为树的高度（递归栈深度）。
+ */
 public class LC_101 {
     public boolean isSymmetric(TreeNode root){
         if (root == null) return true;

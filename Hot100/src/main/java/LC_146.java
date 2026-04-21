@@ -1,6 +1,14 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 题目：LRU 缓存
+ * 思路：哈希表 + 双向链表。
+ * 哈希表支持O(1)查找，双向链表维护访问顺序。
+ * 每次访问或插入数据，将节点移到链表头部（最新使用）。
+ * 容量满时，删除链表尾部节点（最久未使用）。
+ * 时间复杂度：O(1)，空间复杂度：O(capacity)。
+ */
 public class LC_146 {
     public class LRUCache{
         // k-v，双向链表存储
@@ -37,7 +45,7 @@ public class LC_146 {
         public void put(int key, int value){
             // 当前操作的节点
             Node tmpNode;
-            // 存过这个key，更新value
+            // 存过这个key，更新value，取出这个节点，后面要重新插入头节点后
             if(map.containsKey(key)){
                 tmpNode = map.get(key);
                 tmpNode.value = value;
@@ -73,10 +81,11 @@ public class LC_146 {
         public int get(int key){
             if (map.containsKey(key)){
                 Node tmpNode = map.get(key);
-                // 放在头
+                // 断开
                 tmpNode.prev.next = tmpNode.next;
                 tmpNode.next.prev = tmpNode.prev;
                 head.next.prev = tmpNode;
+                // 插入头节点后
                 tmpNode.next = head.next;
                 tmpNode.prev = head;
                 head.next = tmpNode;

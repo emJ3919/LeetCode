@@ -1,3 +1,10 @@
+/**
+ * 题目：合并两个有序链表
+ * 思路：虚拟头节点。
+ * 建立虚拟头节点，同时遍历两个链表，每次取较小节点接到结果链表后面。
+ * 遍历完其中一个链表后，将另一个链表剩余部分直接接上。
+ * 时间复杂度：O(m+n)，空间复杂度：O(1)。
+ */
 public class LC_21 {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2){
         // 初始化临时节点

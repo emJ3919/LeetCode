@@ -1,5 +1,14 @@
 import java.util.*;
 
+/**
+ * 题目：电话号码的字母组合
+ * 思路：回溯。
+ * 建立数字与字母的映射关系。
+ * 遍历每个数字，对应的每个字母都有选择和不选择的情况。
+ * 从第一个数字开始，遍历其对应的字母，选择后递归处理下一个数字。
+ * 递归完成后撤销选择，直到处理完所有数字，将当前结果加入答案列表。
+ * 时间复杂度：O(4^n)，空间复杂度：O(n)。
+ */
 public class LC_17 {
     public List<String> letterCombinations(String digits) {
         // 初始化哈希表，建立数字与字符的关系
@@ -18,7 +27,8 @@ public class LC_17 {
         return ans;
     }
 
-    private void backTracing(List<String> ans, StringBuffer oneAns, String digits, Map<Character, String> map, int cur){
+    private void backTracing(List<String> ans, StringBuffer oneAns,
+        String digits, Map<Character, String> map, int cur){
         // 结果数组大小达到输入长度，记录结果
         if (cur == digits.length()){
             ans.add(oneAns.toString());

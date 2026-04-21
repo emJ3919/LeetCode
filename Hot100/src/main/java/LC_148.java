@@ -1,3 +1,11 @@
+/**
+ * 题目：排序链表
+ * 思路：归并排序。
+ * 使用快慢指针找到链表的中点，将链表拆分为左右两部分。
+ * 递归对左右两部分进行排序拆分，直到每部分只剩一个节点或为空。
+ * 合并两个有序链表，返回排好序的链表。
+ * 时间复杂度：O(n log n)，空间复杂度：O(log n)。
+ */
 public class LC_148 {
     public ListNode sortList(ListNode head) {
         // 判断是否到递归边界
@@ -7,8 +15,8 @@ public class LC_148 {
         // 链表分为两部分
         ListNode slow = head;
         // 快指针要初始化在后一个位置，才能保证右半部分>=左半部分  1 2 3 4
-        ListNode fast = head.next;
-        while (fast != null && fast.next != null){
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null){
             slow = slow.next;
             fast = fast.next.next;
         }
@@ -24,6 +32,7 @@ public class LC_148 {
         return merge(left, right);
     }
 
+    // 合并两个有序链表
     private ListNode merge(ListNode l1, ListNode l2){
         // 新建头节点合并
         ListNode tmp_head = new ListNode(0);

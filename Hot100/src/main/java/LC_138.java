@@ -1,4 +1,13 @@
+/**
+ * 题目：随机链表的复制
+ * 思路：三步法。
+ * 第一步：遍历原链表，在每个节点后插入复制的节点，形成 A->a->B->b 交替结构。
+ * 第二步：复制random指针，由于复制节点在原节点的下一个，原节点.random的下一个即为复制节点的random。
+ * 第三步：分离两个链表，恢复原链表并提取复制链表。
+ * 时间复杂度：O(n)，空间复杂度：O(1)。
+ */
 public class LC_138 {
+    // 随机指针的链表
     private class Node {
         int val;
         Node next;
@@ -36,8 +45,10 @@ public class LC_138 {
         Node ans_cur = head.next;
         // 将复制节点拆出来
         while (ans_cur != null){
+            // 原链表
             cur.next = ans_cur.next;
             cur = cur.next;
+            // 原链表走到头了
             if(cur == null){
                 break;
             }
