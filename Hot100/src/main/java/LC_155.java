@@ -2,6 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 题目：最小栈
+ * 思路：辅助栈。
+ * 入栈时维护一个最小栈，记录当前栈中的最小值。
+ * 每次入栈时，最小栈记录当前最小值（当前元素与最小栈栈顶的较小值）。
+ * 出栈时两个栈同时弹出。
+ * 获取最小值直接返回最小栈栈顶元素。
+ * 时间复杂度：O(1)，空间复杂度：O(n)。
+ */
 public class LC_155 {
     class MinStack{
         List<Integer> stack;

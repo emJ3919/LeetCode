@@ -1,26 +1,14 @@
+/**
+ * 题目：买卖股票的最佳时机
+ * 思路：贪心。
+ * 遍历股票价格，维护历史最低价格。
+ * 对于每一天，计算在最低价买入、今天卖出的收益，取最大收益。
+ * 时间复杂度：O(n)，空间复杂度：O(1)。
+ */
 public class LC_121 {
-    public int maxProfit1(int[] prices) {
-        int len = prices.length;
-        // 只有一天或者没有数据收益为0
-        if (len <= 1) return 0;
-        // 表示第i天前的最低价
-        int[] minPrice = new int[len];
-        // 初始化第二天的，注意是第一天的价钱
-        minPrice[1] = prices[0];
-        // 从第三天开始计算
-        for (int i = 2; i < len; i++){
-            minPrice[i] = Math.min(minPrice[i - 1], prices[i - 1]);
-        }
-        // 计算最大收益：当天价格 - 第i天前的最低价。
-        int ans = 0;
-        // 从第二天开始算
-        for (int i = 1; i < len; i++){
-            ans = Math.max(ans, prices[i] - minPrice[i]);
-        }
-        return ans;
-    }
     public int maxProfit(int[] prices) {
         int len = prices.length;
+        if (len <= 1) return 0; // 只有一天或者没有数据收益为0
         // 记录历史最低价，初始化为第一天的价格
         int minPrice = prices[0];
         // 记录最大收益
@@ -35,5 +23,4 @@ public class LC_121 {
         }
         return ans;
     }
-
 }
