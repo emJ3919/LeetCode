@@ -1,3 +1,13 @@
+/**
+ * 题目：最长公共子序列
+ * 思路：动态规划。
+ * dp[i][j]表示text1前i个字符和text2前j个字符的最长公共子序列长度。
+ * 初始化第一行和第一列为0（空字符串与任意字符串的公共子序列长度为0）。
+ * 遍历两个字符串，如果最后一个字符相等，说明当前字符在公共子序列中，长度加一。
+ * 否则取上一个状态（text1减少一个或者text2减少一个）的较大值。
+ * 遍历填表，返回dp[m][n]。
+ * 时间复杂度：O(mn)，空间复杂度：O(mn)。
+ */
 public class LC_1143 {
     public int longestCommonSubsequence(String text1, String text2) {
         int m = text1.length();

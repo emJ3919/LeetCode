@@ -1,5 +1,15 @@
 import java.util.Arrays;
 
+/**
+ * 题目：最长递增子序列
+ * 思路：动态规划。
+ * dp[i]表示以第i个元素结尾的最长递增子序列长度。
+ * 初始化dp[i]=1（每个元素自己就是一个长度为1的子序列）。
+ * 遍历i之前的每个元素j，若当前位置的元素比j大，就可以接在以nums[j]结尾的子序列后面。
+ * dp[i] = max(dp[i], dp[j] + 1)。
+ * 用变量记录遍历过程中的最大长度，最后返回。
+ * 时间复杂度：O(n²)，空间复杂度：O(n)。
+ */
 public class LC_300 {
     public int lengthOfLIS(int[] nums) {
         int len = nums.length;
